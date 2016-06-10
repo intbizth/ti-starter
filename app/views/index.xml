@@ -11,6 +11,20 @@
                     <Button onClick="toggle">Left</Button>
                 </LeftNavButton>
                 <Label>I am center</Label>
+                <ListView id="groupList" defaultItemTemplate="group">
+					<Templates>
+						<ItemTemplate bindId="group" name="group">
+							<Label bindId="name"/>
+						</ItemTemplate>
+					</Templates>
+		
+					<ListSection id="section" dataCollection="groups">
+						<!-- We need to add the ID of each model in the Collection
+						so that we can use it later to get a specific user by their ID -->
+						<ListItem template="group" user:id="{id}" name:text="{name}"/>
+					</ListSection>
+		
+				</ListView>
                 <RightNavButton>
                     <Button onClick="toggle">Right</Button>
                 </RightNavButton>

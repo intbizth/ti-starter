@@ -1,0 +1,28 @@
+{
+  "name": "starter",
+  "version": "0.0.1",
+  "description": "Titanium Starter App",
+  "main": "index.js",
+  "dependencies": {
+    "alloy-sync-restapi": "^1.1.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intbizth/ti-starter.git"
+  },
+  "keywords": [
+    "titanium",
+    "stater",
+    "alloy"
+  ],
+  "author": "Ishmael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/intbizth/ti-starter/issues"
+  },
+  "homepage": "https://github.com/intbizth/ti-starter#readme"
+}

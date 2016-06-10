@@ -8,6 +8,7 @@
   "os:ios": {},
   "os:mobileweb": {},
   "os:windows": {},
+  "backbone": "1.1.2",
   "dependencies": {
     "nl.fokkezb.drawer": "*",
     "nl.fokkezb.pullToRefresh": "*"

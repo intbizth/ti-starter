@@ -12,22 +12,22 @@
                 </LeftNavButton>
                 <Label>I am center</Label>
                 
-                <Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="groupListReload">
-	                <ListView id="groupList" defaultItemTemplate="group">
-						<Templates>
-							<ItemTemplate bindId="group" name="group">
-								<Label bindId="name"/>
-							</ItemTemplate>
-						</Templates>
-			
-						<ListSection id="section" dataCollection="groups">
-							<!-- We need to add the ID of each model in the Collection
-							so that we can use it later to get a specific user by their ID -->
-							<ListItem template="group" user:id="{id}" name:text="{name}"/>
-						</ListSection>
-					</ListView>
-				</Widget>
-					
+                <Widget src="nl.fokkezb.pullToRefresh" onRelease="memberListReload">
+                    <ListView id="memberList" defaultItemTemplate="member">
+                        <Templates>
+                            <ItemTemplate bindId="member" name="member">
+                                <Label bindId="name"/>
+                            </ItemTemplate>
+                        </Templates>
+            
+                        <ListSection id="section" dataCollection="members">
+                            <!-- We need to add the ID of each model in the Collection
+                            so that we can use it later to get a specific user by their ID -->
+                            <ListItem template="member" member:id="{id}" name:text="{fullname}"/>
+                        </ListSection>
+                    </ListView>
+                </Widget>
+                    
                 <RightNavButton>
                     <Button onClick="toggle">Right</Button>
                 </RightNavButton>

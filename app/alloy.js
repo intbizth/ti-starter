@@ -10,8 +10,6 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
-Alloy.Collections.groups = Alloy.createCollection('groups');
-
-// auto load
-Alloy.Collections.groups.fetch();
-
+//Alloy.Collections.groups = Alloy.Collections.instance('groups');
+Alloy.Collections.members = Alloy.Collections.instance('members');
+Alloy.Collections.members.fetch();

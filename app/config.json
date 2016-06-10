@@ -1,14 +1,21 @@
 {
   "global": {},
-  "env:development": {},
+  "env:development": {
+    "api": "http://127.0.0.1:8000/api/appregist"
+  },
   "env:test": {},
-  "env:production": {},
+  "env:production": {
+    "api": "http://demo.moboque.com/api/appregist"
+  },
   "os:android": {},
   "os:blackberry": {},
   "os:ios": {},
   "os:mobileweb": {},
   "os:windows": {},
   "backbone": "1.1.2",
+  "nodejs_require": {
+    "enabled": true
+  },
   "dependencies": {
     "nl.fokkezb.drawer": "1.1.2",
     "nl.fokkezb.pullToRefresh": "2.2.1"

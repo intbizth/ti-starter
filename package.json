@@ -7,7 +7,9 @@
     "alloy-sync-restapi": "^1.1.12",
     "nl.fokkezb.pulltorefresh": "^2.2.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ti-stealth": "0.0.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

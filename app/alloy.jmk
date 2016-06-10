@@ -1,3 +1,11 @@
+/*task("post:compile", function(event, logger) {
+  if (event.alloyConfig.deployType === 'production') {
+    require(path.resolve('./node_modules/ti-stealth')).enable(event.dir.resources, {
+      notLevels: 'error'
+    });
+  }
+});
+*/
 /*
 // https://github.com/RonaldTreur/STSS
 task('pre:compile', stss);
@@ -11,7 +19,7 @@ function stss(config, logger) { //--v0.2.1
 		renderer = require('stss');
 		logger.info('Loading global STSS renderer');
 	} catch (err) {
-		renderer = require(path.join('/usr/local/lib', 'node_modules', 'stss'));
+		renderer = require(path.resolve('./node_modules/stss'));
 		logger.info('Loading local STSS renderer');
 	}
 

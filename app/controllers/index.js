@@ -7,6 +7,16 @@ function toggle(e) {
 
 //var group = new Alloy.Collections.groups.model({name: 'Sample'});
 
-function groupListReload() {
-	
+function groupListReload(e) {
+    Alloy.Collections.groups.fetch({
+        success: e.hide,
+        error: e.hide
+    });
+}
+
+function memberListReload(e) {
+	Alloy.Collections.members.next({
+		success: e.hide,
+		error: e.hide
+	});
 }

@@ -1,15 +1,14 @@
 var BaseCollection = require('collection');
 
 exports.definition = BaseCollection.initCollection({
-	api: "/groups/",
+	api: '/members/',
 	config: {
 		columns: {
 			"id": "integer",
-		    "name": "string",
-		    "enabled": "boolean"
+		    "fullname": "string"
 		},
 		adapter: {
-			collection_name: "groups",
+			collection_name: "members",
 		}
 	}
 });

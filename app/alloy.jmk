@@ -1,4 +1,5 @@
-
+/*
+// https://github.com/RonaldTreur/STSS
 task('pre:compile', stss);
 
 function stss(config, logger) { //--v0.2.1
@@ -10,7 +11,7 @@ function stss(config, logger) { //--v0.2.1
 		renderer = require('stss');
 		logger.info('Loading global STSS renderer');
 	} catch (err) {
-		renderer = require(path.join(process.cwd(), 'node_modules', 'stss'));
+		renderer = require(path.join('/usr/local/lib', 'node_modules', 'stss'));
 		logger.info('Loading local STSS renderer');
 	}
 
@@ -55,4 +56,5 @@ function stss(config, logger) { //--v0.2.1
 			});
 		}
 	});
-}
+}*/
+

@@ -5,8 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "alloy-sync-restapi": "^1.1.12",
-    "nl.fokkezb.pulltorefresh": "^2.2.2",
-    "stss": "^0.4.3"
+    "nl.fokkezb.pulltorefresh": "^2.2.2"
   },
   "devDependencies": {},
   "scripts": {

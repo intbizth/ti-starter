@@ -9,5 +9,14 @@
 }
 
 "Window": {
-    backgroundColor: 'white'
+    backgroundColor: 'gray'
+}
+
+"ListView": {
+	backgroundColor: 'transparent'
+}
+
+"ListItem": {
+	// transparent demo
+	backgroundColor: 'transparent',
 }

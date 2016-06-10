@@ -7,3 +7,6 @@ function toggle(e) {
 
 //var group = new Alloy.Collections.groups.model({name: 'Sample'});
 
+function groupListReload() {
+	
+}

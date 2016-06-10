@@ -10,7 +10,7 @@
   "os:windows": {},
   "backbone": "1.1.2",
   "dependencies": {
-    "nl.fokkezb.drawer": "*",
-    "nl.fokkezb.pullToRefresh": "*"
+    "nl.fokkezb.drawer": "1.1.2",
+    "nl.fokkezb.pullToRefresh": "2.2.1"
   }
 }

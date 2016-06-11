@@ -16,7 +16,7 @@ var defaultConfig = {
             "Content-Type": "application/json"
         },
         URLPARAMS: {
-            limit: 20
+            limit: 5
         }
     },
     extendModel: function(Model) {
@@ -52,7 +52,7 @@ var defaultConfig = {
             search: function(options) {
                 if (typeof options === 'string') {
                     options = {
-                        data: { search: options }
+                        urlparams: { search: options }
                     };
                 }
 

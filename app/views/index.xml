@@ -15,7 +15,7 @@
                     <Label>I am center</Label>
                     
                     <!-- Remote Search -->
-                    <SearchBar id="search" platform="ios" />
+                    <Widget id="search" src="int.widget.search-box" collection="members" />
 
                     <Widget src="nl.fokkezb.pullToRefresh" onRelease="memberListReload">
                         <ListView id="memberList" defaultItemTemplate="member">

@@ -1,0 +1,4 @@
+<Alloy>
+    <SearchBar id="ios" class="search" platform="ios" />
+    <SearchView id="android" class="search" platform="android" ns="Ti.UI.Android" />
+</Alloy>

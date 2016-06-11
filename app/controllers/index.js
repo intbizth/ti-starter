@@ -15,15 +15,6 @@ function toggle(e) {
     $.drawer[fn]();
 }
 
-$.search.addEventListener('return', function(e) {
-    console.log(e.value);
-});
-
-$.search.addEventListener('change', function(e) {
-    console.log(e.value);
-});
-
-
 $.drawer.open();
 
 //$.win.addEventListener('close', function() {});

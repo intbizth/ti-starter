@@ -1,5 +1,7 @@
 {
-  "global": {},
+  "global": {
+    "theme": "wriststrap"
+  },
   "env:development": {
     "api": "http://127.0.0.1:8000/api/appregist"
   },

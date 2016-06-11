@@ -17,6 +17,6 @@ function toggle(e) {
 
 $.drawer.open();
 
-$.activityIndicator.show();
+//$.activityIndicator.show();
 
 //$.win.addEventListener('close', function() {});

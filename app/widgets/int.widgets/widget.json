@@ -1,7 +1,7 @@
 {
-    "id": "int.widget.search-box",
+    "id": "int.widgets",
     "name": "Search Box",
-    "description" : "Uniform wrapper for iOS SearchBar and Android SearchView.",
+    "description" : "All in one",
     "author": "Ishmael",
     "version": "0.0.1",
     "copyright":"Copyright (c) 2016",

@@ -6,6 +6,7 @@
         </Window>
 
         <NavigationWindow platform="ios" role="centerWindow">
+
             <Window>
                 <LeftNavButton>
                     <Button onClick="toggle">Left</Button>
@@ -13,9 +14,9 @@
 
                 <View layout="vertical">
                     <Label>I am center</Label>
-                    
+            
                     <!-- Remote Search -->
-                    <Widget id="search" src="int.widget.search-box" collection="members" />
+                    <Widget id="search" src="int.widgets" name="search-box" collection="members" />
 
                     <Widget src="nl.fokkezb.pullToRefresh" onRelease="memberListReload">
                         <ListView id="memberList" defaultItemTemplate="member">

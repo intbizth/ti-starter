@@ -38,6 +38,8 @@
                                     lblMember:text="{fullname}"
                                 />
                             </ListSection>
+
+                            <Widget id="memberListIS" src="nl.fokkezb.infiniteScroll" onEnd="memberListLoadMore" />
                         </ListView>
                     </Widget>
                 </View>

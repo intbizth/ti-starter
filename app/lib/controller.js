@@ -1,33 +1,67 @@
 // base controller
 
-exports.reloadListView = function (collection, e, opts) {
-    // $el = e.source
-
-    if (!opts) {
-        opts = {};
+function parseOptions(event, options) {
+    if (!options) {
+        options = {};
     }
 
-    if (e) {
-        if (opts.success) {
-            var successCallback = opts.success;
-            opts.success = function() {
-                e.hide();
+    if (event) {
+        if (options.success) {
+            var successCallback = options.success;
+            options.success = function() {
+                event.success();
                 successCallback.call(this, arguments);
             }
         } else {
-            opts.success = e.hide;
+            options.success = function () {
+                event.success();
+            };
         }
-        
-        if (opts.error) {
-            var errorCallback = opts.error;
-            opts.error = function() {
-                e.hide();
+
+        if (options.error) {
+            var errorCallback = options.error;
+            options.error = function() {
+                event.error();
                 errorCallback.call(this, arguments);
             }
         } else {
-            opts.error = e.hide;
+            options.error = function () {
+                event.error();
+            };
         }
     }
 
-    return collection.first(opts);
+    return options;
+}
+
+// handle infinite scroll with no buffer
+exports.listView = {
+     reload: function (collection, e, opts) {
+        // $el = e.source
+        opts = parseOptions(e ? {
+            success: e.hide,
+            error: e.hide
+        } : null, opts);
+
+        if (collection.startup) {
+            return collection.first(opts);
+        }
+
+        return collection.back(opts);
+    },
+
+    more: function(collection, e, opts) {
+        opts = parseOptions(e ? {
+            success: collection.ended ? e.done : e.success,
+            error: function() {
+                e.error(L('isError', 'Tap to try again...'));
+            }
+        } : null, opts);
+
+        if (collection.ended) {
+            return collection.last(opts);
+        }
+
+        return collection.next(opts);
+    }
 }

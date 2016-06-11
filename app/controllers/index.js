@@ -6,7 +6,11 @@ function groupListReload(e) {
 }
 
 function memberListReload(e) {
-    base.reloadListView(members, e);
+    base.listView.reload(members, e);
+}
+
+function memberListLoadMore(e) {
+    base.listView.more(members, e);
 }
 
 // demo
@@ -14,6 +18,8 @@ function toggle(e) {
     var fn = 'toggle' + e.source.title + 'Window';
     $.drawer[fn]();
 }
+
+$.memberListIS.init($.memberList);
 
 $.drawer.open();
 

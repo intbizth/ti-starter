@@ -39,6 +39,7 @@ var defaultConfig = {
             pages: 1,
             limit: 10,
             total: 0,
+            startup: true,
             ended: true,
 
             // For Backbone v1.1.2
@@ -82,10 +83,11 @@ var defaultConfig = {
                     return this._links('first', options);
                 }
 
+                var link = _links.self.href;
                 var replaces = link.match(/page=([0-9]+)/);
-                var link = _links.self.href.replace(replaces[0], 'page=' + page);
-                
-                options.url = link;
+
+                options.url = link.replace(replaces[0], 'page=' + page);
+
                 return this.fetch(options);
             },
 
@@ -96,7 +98,7 @@ var defaultConfig = {
             self: function(options) {
                 return this._links('self', options);
             },
-            
+
             parse: function(response) {
                 if (typeof response._embedded === 'undefined') {
                     return response;
@@ -114,6 +116,7 @@ var defaultConfig = {
                     this.pages = response.pages;
                 }
 
+                this.startup = this.page === 1;
                 this.ended = this.page === this.pages;
 
                 if (typeof response.limit !== 'undefined') {

@@ -1,22 +1,29 @@
-$.drawer.open();
+var base = require('controller');
+var members = Alloy.Collections.members;
 
+function groupListReload(e) {
+    groups.first({ success: e.hide, error: e.hide });
+}
+
+function memberListReload(e) {
+    base.reloadListView(members, e);
+}
+
+// demo
 function toggle(e) {
     var fn = 'toggle' + e.source.title + 'Window';
     $.drawer[fn]();
 }
 
-//var group = new Alloy.Collections.groups.model({name: 'Sample'});
+$.search.addEventListener('return', function(e) {
+    console.log(e.value);
+});
 
-function groupListReload(e) {
-    Alloy.Collections.groups.fetch({
-        success: e.hide,
-        error: e.hide
-    });
-}
+$.search.addEventListener('change', function(e) {
+    console.log(e.value);
+});
 
-function memberListReload(e) {
-	Alloy.Collections.members.next({
-		success: e.hide,
-		error: e.hide
-	});
-}
+
+$.drawer.open();
+
+//$.win.addEventListener('close', function() {});

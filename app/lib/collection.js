@@ -2,7 +2,7 @@ var _deepExtend = require('underscore-deep-extend');
 
 var defaultConfig = {
     config: {
-        debug: true,
+        debug: false,
         columns: {
             "id": "integer",
             "name": "string",
@@ -15,6 +15,9 @@ var defaultConfig = {
         headers: {
             "Content-Type": "application/json"
         },
+        URLPARAMS: {
+            limit: 20
+        }
     },
     extendModel: function(Model) {
         _.extend(Model.prototype, {
@@ -32,17 +35,31 @@ var defaultConfig = {
         };
 
         _.extend(Collection.prototype, {
-            // extended functions and properties go here
+            page: 1,
+            pages: 1,
+            limit: 10,
+            total: 0,
+            ended: true,
 
-            // For Backbone v1.1.2, uncomment the following to override the
+            // For Backbone v1.1.2
             // fetch method to account for a breaking change in Backbone.
-            
             fetch: function(options) {
                 options = options ? _.clone(options) : {};
                 options.reset = true;
                 return Backbone.Collection.prototype.fetch.call(this, options);
             },
 
+            search: function(options) {
+                if (typeof options === 'string') {
+                    options = {
+                        data: { search: options }
+                    };
+                }
+
+                return this.fetch(options);
+            },
+
+            // @private
             _links: function(target, options) {
                 if (_links[target]) {
                     options.url = _links[target].href;
@@ -58,6 +75,20 @@ var defaultConfig = {
                 return this._links('next', options);
             },
 
+            back: function(options) {
+                var page = this.page - 1;
+
+                if (page <= 1 || this.page === 1) {
+                    return this._links('first', options);
+                }
+
+                var replaces = link.match(/page=([0-9]+)/);
+                var link = _links.self.href.replace(replaces[0], 'page=' + page);
+                
+                options.url = link;
+                return this.fetch(options);
+            },
+
             last: function(options) {
                 return this._links('last', options);
             },
@@ -67,15 +98,32 @@ var defaultConfig = {
             },
             
             parse: function(response) {
-                if (typeof response._links !== 'undefined') {
-                    _links = response._links;
-                }
-
                 if (typeof response._embedded === 'undefined') {
                     return response;
                 }
 
-                // TODO: links, paginated
+                if (typeof response._links !== 'undefined') {
+                    _links = response._links;
+                }
+
+                if (typeof response.page !== 'undefined') {
+                    this.page = response.page;
+                }
+
+                if (typeof response.pages !== 'undefined') {
+                    this.pages = response.pages;
+                }
+
+                this.ended = this.page === this.pages;
+
+                if (typeof response.limit !== 'undefined') {
+                    this.limit = response.limit;
+                }
+
+                if (typeof response.total !== 'undefined') {
+                    this.total = response.total;
+                }
+
                 return response._embedded.items;
             }
         });

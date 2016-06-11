@@ -10,23 +10,36 @@
                 <LeftNavButton>
                     <Button onClick="toggle">Left</Button>
                 </LeftNavButton>
-                <Label>I am center</Label>
+
+                <View layout="vertical">
+                    <Label>I am center</Label>
+                    
+                    <!-- Remote Search -->
+                    <SearchBar id="search" platform="ios" />
+
+                    <Widget src="nl.fokkezb.pullToRefresh" onRelease="memberListReload">
+                        <ListView id="memberList" defaultItemTemplate="member">
+                            <!-- Locale Search -->
+                            <SearchBar class="search" platform="ios" />
+                            <SearchView class="search" platform="android" ns="Ti.UI.Android" />
+
+                            <Templates>
+                                <ItemTemplate bindId="member" name="member">
+                                    <Label bindId="lblMember"/>
+                                </ItemTemplate>
+                            </Templates>
                 
-                <Widget src="nl.fokkezb.pullToRefresh" onRelease="memberListReload">
-                    <ListView id="memberList" defaultItemTemplate="member">
-                        <Templates>
-                            <ItemTemplate bindId="member" name="member">
-                                <Label bindId="name"/>
-                            </ItemTemplate>
-                        </Templates>
-            
-                        <ListSection id="section" dataCollection="members">
-                            <!-- We need to add the ID of each model in the Collection
-                            so that we can use it later to get a specific user by their ID -->
-                            <ListItem template="member" member:id="{id}" name:text="{fullname}"/>
-                        </ListSection>
-                    </ListView>
-                </Widget>
+                            <ListSection id="section" dataCollection="members">
+                                <ListItem
+                                    template="member"
+                                    searchableText="{fullname}"
+                                    lblMember:id="{id}"
+                                    lblMember:text="{fullname}"
+                                />
+                            </ListSection>
+                        </ListView>
+                    </Widget>
+                </View>
                     
                 <RightNavButton>
                     <Button onClick="toggle">Right</Button>

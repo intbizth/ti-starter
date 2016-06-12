@@ -9,8 +9,11 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
-Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
+
+// https://github.com/FokkeZB/nl.fokkezb.loading
+//Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
 Alloy.Collections.groups = Alloy.Collections.instance('groups');
 Alloy.Collections.members = Alloy.Collections.instance('members');
+
 Alloy.Collections.members.fetch();

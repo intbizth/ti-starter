@@ -24,6 +24,9 @@ function apiCall(_options, _callback) {
 			timeout : _options.timeout || 7000
 		});
 
+		// http://stackoverflow.com/questions/24381480
+		_options.url = _options.url.replace(/([^:]\/)\/+/g, "$1");
+
 		xhr.onload = function() {
 			var responseJSON, success = (this.status <= 304) ? "ok" : "error", status = true, error;
 
@@ -151,6 +154,7 @@ function Sync(method, model, opts) {
 		'create' : 'POST',
 		'read' : 'GET',
 		'update' : 'PUT',
+		'patch' : 'PATCH',
 		'delete' : 'DELETE'
 	};
 
@@ -210,7 +214,7 @@ function Sync(method, model, opts) {
 	}
 
 	//json data transfers
-	if (!params.data && model && (method == 'create' || method == 'update')) {
+	if (!params.data && model && (method == 'create' || method == 'update' || method == 'patch')) {
     	params.headers['Content-Type'] = 'application/json';
     }
 
@@ -299,6 +303,7 @@ function Sync(method, model, opts) {
 			});
 			break;
 
+		case 'patch' :
 		case 'update' :
 			if (!model.id) {
 				params.error(null, "MISSING MODEL ID");
@@ -320,7 +325,7 @@ function Sync(method, model, opts) {
 
 			params.data = JSON.stringify(model.toJSON());
 
-			logger(DEBUG, "update options", params);
+			logger(DEBUG, method + " options", params);
 
 			apiCall(params, function(_response) {
 				if (_response.success) {
@@ -352,7 +357,7 @@ function Sync(method, model, opts) {
 			if (params.urlparams) {
 				params.url = encodeData(params.urlparams, params.url);
 			}
-			
+
 			logger(DEBUG, "delete options", params);
 
 			apiCall(params, function(_response) {

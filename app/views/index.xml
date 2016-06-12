@@ -2,60 +2,29 @@
     <Widget id="drawer" src="nl.fokkezb.drawer">
 
         <Window module="xp.ui" role="leftWindow">
-            <Label>I am left</Label>
+            <Label>Left Side Menu</Label>
         </Window>
 
         <NavigationWindow platform="ios" role="centerWindow">
-
             <Window>
                 <LeftNavButton>
                     <Button onClick="toggle">Left</Button>
                 </LeftNavButton>
 
-                <View layout="vertical">
-                    <Label>I am center</Label>
-            
-                    <!-- Remote Search -->
-                    <Widget id="search" src="int.widgets" name="search-box" collection="members" />
+                <Require src="main" id="main"/>
 
-                    <Widget src="nl.fokkezb.pullToRefresh" onRelease="memberListReload">
-                        <ListView id="memberList" defaultItemTemplate="member">
-                            <!-- Locale Search -->
-                            <SearchBar class="search" platform="ios" />
-                            <SearchView class="search" platform="android" ns="Ti.UI.Android" />
-
-                            <Templates>
-                                <ItemTemplate bindId="member" name="member">
-                                    <Label bindId="lblMember"/>
-                                </ItemTemplate>
-                            </Templates>
-                
-                            <ListSection id="section" dataCollection="members">
-                                <ListItem
-                                    template="member"
-                                    searchableText="{fullname}"
-                                    lblMember:id="{id}"
-                                    lblMember:text="{fullname}"
-                                />
-                            </ListSection>
-
-                            <Widget id="memberListIS" src="nl.fokkezb.infiniteScroll" onEnd="memberListLoadMore" />
-                        </ListView>
-                    </Widget>
-                </View>
-                    
                 <RightNavButton>
                     <Button onClick="toggle">Right</Button>
                 </RightNavButton>
             </Window>
         </NavigationWindow>
-        
+
         <View platform="android" role="centerWindow">
-            <Label>I am center</Label>
+            <Require src="main" id="main"/>
         </View>
 
         <Window module="xp.ui" role="rightWindow">
-            <Label>I am right</Label>
+            <Label>Right Side Menu</Label>
         </Window>
 
     </Widget>

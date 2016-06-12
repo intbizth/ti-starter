@@ -1,0 +1,33 @@
+<Alloy>
+    <View layout="vertical">
+        <Label>I am center</Label>
+
+        <!-- DEMO: Remote Search -->
+        <Widget id="search" src="int.widgets" name="search-box" collection="members" />
+
+        <Widget src="nl.fokkezb.pullToRefresh" onRelease="reload">
+            <ListView id="listView" defaultItemTemplate="tpl-member">
+                <!-- DEMO: Locale Search -->
+                <SearchBar class="search" platform="ios" />
+                <SearchView class="search" platform="android" ns="Ti.UI.Android" />
+
+                <Templates>
+                    <ItemTemplate name="tpl-member">
+                        <Label bindId="lblMember"/>
+                    </ItemTemplate>
+                </Templates>
+
+                <ListSection id="section" dataCollection="members">
+                    <ListItem
+                        template="tpl-member"
+                        searchableText="{fullname}"
+                        lblMember:id="{id}"
+                        lblMember:text="{fullname}"
+                    />
+                </ListSection>
+
+                <Widget id="ISList" src="nl.fokkezb.infiniteScroll" onEnd="loadMore" />
+            </ListView>
+        </Widget>
+    </View>
+</Alloy>

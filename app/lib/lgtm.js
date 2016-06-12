@@ -518,7 +518,7 @@
 
   /* global console */
   configure('Promise', PromiseProxy);
-  configure('warn', console.warn.bind(console)); // eslint-disable-line no-console
+  configure('warn', console.warn); // eslint-disable-line no-console
   configure('get', function (object, property) {
     var warn = config['warn'];
 

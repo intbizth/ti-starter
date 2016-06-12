@@ -9,6 +9,5 @@ function loadMore(e) {
     base.listView.more(members, e);
 }
 
+// infiniteScroll init
 $.ISList.init($.listView);
-
-//$.main.addEventListener('close', function() {});

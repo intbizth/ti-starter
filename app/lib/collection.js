@@ -2,7 +2,7 @@ var _deepExtend = require('underscore-deep-extend');
 
 var defaultConfig = {
     config: {
-        debug: false,
+        debug: true,
         columns: {
             "id": "integer",
             "name": "string",

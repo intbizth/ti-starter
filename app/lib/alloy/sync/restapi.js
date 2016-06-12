@@ -223,7 +223,7 @@ function Sync(method, model, opts) {
     switch(method) {
         case 'create' :
             // convert to string for API call
-            params.data = JSON.stringify(model.toJSON());
+            params.data = JSON.stringify(model.serialize(method));
             logger(DEBUG, "create options", params);
 
             apiCall(params, function(_response) {
@@ -329,7 +329,7 @@ function Sync(method, model, opts) {
             if (params.urlparams) {
                 params.url = encodeData(params.urlparams, params.url);
             }
-console.log(model.serialize);
+
             params.data = JSON.stringify(model.serialize(method));
 
             logger(DEBUG, method + " options", params);

@@ -305,6 +305,13 @@ function Sync(method, model, opts) {
 
         case 'patch' :
         case 'update' :
+
+            if (!model.hasChanged()) {
+                params.error(null, "NO ATTRIBUTEs CHANGED TO PATCH");
+                Ti.API.error("[REST API] ERROR: Use model.hasChanged() before save.");
+                return;
+            }
+
             if (!model.id) {
                 params.error(null, "MISSING MODEL ID");
                 Ti.API.error("[REST API] ERROR: MISSING MODEL ID");
@@ -322,8 +329,8 @@ function Sync(method, model, opts) {
             if (params.urlparams) {
                 params.url = encodeData(params.urlparams, params.url);
             }
-
-            params.data = JSON.stringify(model.toJSON());
+console.log(model.serialize);
+            params.data = JSON.stringify(model.serialize(method));
 
             logger(DEBUG, method + " options", params);
 

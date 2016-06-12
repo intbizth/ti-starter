@@ -2,7 +2,28 @@
     <View layout="vertical">
         <Label>I am center</Label>
 
-        <!-- DEMO: Remote Search -->
+        <ListView id="listViewGroup" onItemclick="onListViewGroupItemClick" defaultItemTemplate="tpl-group" height="200">
+            <!-- DEMO: Locale Search -->
+            <SearchBar class="search" platform="ios" />
+            <SearchView class="search" platform="android" ns="Ti.UI.Android" />
+
+            <Templates>
+                <ItemTemplate name="tpl-group">
+                    <Label bindId="data"/>
+                </ItemTemplate>
+            </Templates>
+
+            <ListSection dataCollection="groups">
+                <ListItem
+                    template="tpl-group"
+                    searchableText="{name}"
+                    data:id="{id}"
+                    data:text="{name}"
+                />
+            </ListSection>
+        </ListView>
+
+            <!-- DEMO: Remote Search -->
         <Widget id="search" src="int.widgets" name="search-box" collection="members" />
 
         <Widget src="nl.fokkezb.pullToRefresh" onRelease="reload">
@@ -13,16 +34,16 @@
 
                 <Templates>
                     <ItemTemplate name="tpl-member">
-                        <Label bindId="lblMember"/>
+                        <Label bindId="data"/>
                     </ItemTemplate>
                 </Templates>
 
-                <ListSection id="section" dataCollection="members">
+                <ListSection dataCollection="members">
                     <ListItem
                         template="tpl-member"
                         searchableText="{fullname}"
-                        lblMember:id="{id}"
-                        lblMember:text="{fullname}"
+                        data:id="{id}"
+                        data:text="{fullname}"
                     />
                 </ListSection>
 

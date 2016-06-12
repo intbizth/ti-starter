@@ -5,7 +5,7 @@
             <Label>Left Side Menu</Label>
         </Window>
 
-        <NavigationWindow platform="ios" role="centerWindow">
+        <NavigationWindow id="container" platform="ios" role="centerWindow">
             <Window>
                 <LeftNavButton>
                     <Button onClick="toggle">Left</Button>
@@ -19,7 +19,7 @@
             </Window>
         </NavigationWindow>
 
-        <View platform="android" role="centerWindow">
+        <View id="container" platform="android" role="centerWindow">
             <Require src="main" id="main"/>
         </View>
 

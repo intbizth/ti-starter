@@ -1,0 +1,7 @@
+<Alloy>
+    <Window id="form">
+        <Label text="{name}" />
+        <TextField id="name" value="{name}" />
+        <Button onClick="onSaveClick">Save</Button>
+    </Window>
+</Alloy>

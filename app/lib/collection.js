@@ -1,4 +1,6 @@
-var _deepExtend = require('underscore-deep-extend');
+var _deepExtend = require('underscore-deep-extend'),
+    _validatorBuilder = require('validator').LGTM
+;
 
 var defaultConfig = function() {
     return {
@@ -20,13 +22,35 @@ var defaultConfig = function() {
                 limit: 5
             }
         },
-        extendModel: function(Model) {
-            _.extend(Model.prototype, {
-                // extended functions and properties go here
-            });
+        _extendModel: {
+            /**
+             * @return Promise
+             */
+            isValid: function() {
+                if (!this.validator) {
+                    return _validatorBuilder.validator().build().validate(this);
+                }
 
-            return Model;
+                return this.validator.validate(this);
+            },
+
+            rejectChange: function () {
+                console.wran('TODO: not yet implement.');
+            },
+
+            /**
+             * default serialize
+             *
+             * @return JSON
+             */
+            serialize: function(method) {
+                var json = this.toJSON();
+                delete json[this.idAttribute];
+
+                return json;
+            }
         },
+
         extendCollection: function(Collection) {
             var _links = {
                 first: false,
@@ -145,15 +169,32 @@ var defaultConfig = function() {
     }
 };
 
-exports.initCollection = function (config) {
+exports.initCollection = function(config) {
+    var _defaultConfig = defaultConfig();
+
+    if (typeof config.extendModel !== 'function') {
+        var extendModel = _deepExtend.underscoreDeepExtend(
+            _defaultConfig._extendModel, config.extendModel || {}
+        );
+
+        delete config.extendModel;
+
+        if (typeof config.validator === 'function') {
+            extendModel.validator = config.validator(_validatorBuilder.validator()).build();
+            delete config.validator;
+        }
+
+        _defaultConfig.extendModel = function(Model) {
+            _.extend(Model.prototype, extendModel);
+
+            return Model;
+        }
+    }
+
     if (typeof config.api !== 'undefined') {
         config.config.URL = Alloy.CFG.api + config.api;
         delete config.api;
     }
 
-    var _defaultConfig = defaultConfig();
-
     return _deepExtend.underscoreDeepExtend(_defaultConfig, config);
 };
-
-exports.defaultCollectionConfig = defaultConfig;
